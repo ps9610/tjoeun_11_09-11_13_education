@@ -134,7 +134,7 @@
                 if(cnt<0){cnt=2};
                 mainPrevSlideFn();
             }
-            setInterval(countPrevFn, 3000)
+            setInterval(countNextFn, 3000)
         },
         // .slide-wrap .slide {z-index:1;position:absolute;top:0;left:0;width:100%;height:100%;}
         // .slide-wrap .slide0 {z-index:3;opacity:0;} 눈에 보이는 슬라이드 z-index:3;
