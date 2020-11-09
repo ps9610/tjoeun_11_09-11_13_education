@@ -7,7 +7,7 @@
 }
 
 @media all and (max-width:1170px){
-    #main .section234 .wrap .gap {margin:0;}
+    /* #main .section234 .wrap .gap {margin:0;} */
 }
 
 @media all and (max-width:1200px)/*990px이하 해상도 모두 가능*/ {

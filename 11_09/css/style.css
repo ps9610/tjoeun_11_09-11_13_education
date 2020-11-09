@@ -58,16 +58,18 @@
 #main #section01 .arrow-down > a {display:block;width:100%;}
 #main #section01 .arrow-down > a > img {width:100%;}
 
-#main #section02 {width:100%;height:969px;background:url(../img/restaurant-img1.jpg) no-repeat 50% 0 fixed;background-size:cover;}
-#main #section02 .wrap {width:100%;max-width:1170px;margin:0 auto;height:100%;}
-#main #section02 .wrap .gap {margin:0 15px;height:100%;}
-#main #section02 .wrap .gap .container {position:relative;width:100%;}
-#main #section02 .wrap .gap .container .content-wrap {position:absolute;top:209.5px;right:0;/* right:345px */;width:100%;max-width:450px;height:550px;background:#fff;}
-
-
+#main .section234 {width:100%;height:969px;background:url(../img/restaurant-img1.jpg) no-repeat 50% 0 fixed;background-size:cover;}
+#main .section234 .wrap {width:100%;max-width:1170px;margin:0 auto;height:100%;}
+#main .section234 .wrap .gap {margin:0 15px;height:100%;}
+#main .section234 .wrap .gap .container {position:relative;width:100%;}
+#main .section234 .wrap .gap .container .content-wrap {position:absolute;top:209.5px;right:0;/* right:345px */;width:100%;max-width:450px;height:550px;background:#fff;}
+#main .section234 .wrap .gap .container .content-wrap:after {position:absolute;top:5.090909%;left:6.222222%;content:"";display:block;width:87.555556%;height:89.818182%;outline:8px solid #d8b75f;} /* outline은 바깥쪽에서 그려진다는걸 생각하기 */
+                                                                /* absolute도 position이니까 부모요소 될 수 있음 */ /* 패딩,마진 = 무조건 자기를 감싸는 부모영역의 너비에만 관계됨 */ /* 너비,left,right / 높이,top,bottom ->관계잘확인하기 */
 #main #section03 {width:100%;height:969px;background:url(../img/restaurant-img2.jpg) no-repeat 50% 0 fixed;background-size:cover;}
-
+#main #section03 .wrap .gap .container .content-wrap {left:0;/* left:345px */;}
 #main #section04 {width:100%;height:969px;background:url(../img/restaurant-img3.jpg) no-repeat 50% 0 fixed;background-size:cover;}
+
+
 
 #main #section05 {width:100%;height:860px;padding:130px 0;}
 #main #section06 {width:100%;height:740px;background:#fff;}

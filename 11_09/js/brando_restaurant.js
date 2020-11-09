@@ -108,15 +108,6 @@
             var boxHeight = boxWidth * 1.22222;
             //            = $(".content-wrap").height(); //550
 
-//박스 넓이가 바뀌면 height도 바뀌여야 함 이거 할거임
-//박스 높이(고정되어있음) = 박스 너비 (450)* 높이의 비율 = 1.22222
-// boxHeight = boxWidth * 1.22222
-// boxWidth는 boxHeight 위 쪽으로 변수 써주기
-
-//창 너비가 1170이하면 [조건문] 박스를 가운데 정렬하는 애니메이션 만들기
-// right(또는 left) = (창너비-박스너비)/2
-// 창 너비 변수 생성하기
-// 그리고 right(또는 left) 변수 생성하기
             setTimeout(resizeFn,100);
 
             function resizeFn(){
@@ -129,9 +120,9 @@
                 boxHeight = boxWidth * 1.22222;
                 // boxTop = (windowHeight-boxHeight)/2; //(969-550)/2 = 209.5
 
-                if(windowHeight < boxHeight){
-                    section234Height = boxHeight;
-                    boxTop = 0;
+                if(windowHeight < boxHeight+60){
+                    section234Height = boxHeight+60;
+                    boxTop = 30;
                 }
                 else{
                     section234Height = windowHeight;
@@ -143,9 +134,7 @@
             
                 if( windowWidth <= 1170 ){
                     $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:rl-15 },300);
-                    // $("#section02 .content-wrap, #section04 .content-wrap").css({ right:rl-15 }) : 애니메이션 하기 전
-                    // $("#section02 .content-wrap, #section04 .content-wrap").css({ right:rl-15 = 마진값 빼줘야 한쪽으로 안 치우치고 중앙에 옴});
-                    $("#section03 .content-wrap").stop().animate({ left:rl-15 },300);
+                    $("#section03 .content-wrap").stop().animate({ left:rl-15 },300); // left, right 각각 마진 안 맞아서 삭제->미디어 쿼리에서 조정할거임
                 }
                 else{
                     $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:0 },100);
