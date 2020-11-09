@@ -111,11 +111,23 @@
     </header> <!-- 태그 안에 id는 바로가기 메뉴 -->
     <main id="main">
         <section id="section01"> <!-- 작업순서 1번(왜냐면 얘가 있어야 header가 보임) -->
+            <!-- fadeIn/Out 되는 슬라이드 만들기 -->
+            <div class="slide-container">
+                <div class="slide-view">
+                    <ul class="slide-wrap">
+                        <li class="slide slide0"><div><img src="./img/slider-img4.jpg" alt="슬라이드 1번"></div></li>
+                        <li class="slide slide1"><div><img src="./img/slider-img6.jpg" alt="슬라이드 2번"></div></li>
+                        <li class="slide slide2"><div><img src="./img/restaurant-img1.jpg" alt="슬라이드 3번"></div></li>
+                        <!-- li 뒷배경으로 이미지를 넣어서 li 자체로 슬라이드 하는 방법도 있음 -->
+                    </ul>
+                </div>
+            </div>
             <span class="hungry"><img src="./img/hungry.png" alt="메인 타이틀"></span>
             <span class="arrow-down"><a href="#section02" class="arrow-down-btn smooth-btn" title="아래 버튼"><img src="./img/arrow-down.png" alt="밑으로 이동하기"></a></span>
         </section>
-        <!-- 섹션 2 3 4가 똑같아서 2만 잘 만들어서 3 4에 붙여넣기 하면 됨 -->
 
+
+        <!-- 섹션 2 3 4가 똑같아서 2만 잘 만들어서 3 4에 붙여넣기 하면 됨 -->
         <section id="section02" class="section234"> <!-- 줄구분 -->
             <div class="wrap"> <!-- 전체 넓이 1170px로 써줌  -->
                 <div class="gap"> <!-- 실제 넓이는 1140px이라 양쪽 15px씩 여백용 요소 넣어줌 -->

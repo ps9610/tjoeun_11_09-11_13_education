@@ -71,6 +71,8 @@
         },//헤더의 js
 
         section01Fn:    function(){
+            
+            var cnt = -1;
 
             var winH = 969;
             var imgH = $(".hungry").height();
@@ -96,7 +98,53 @@
             $(window).resize(function(){
                 resizeFn();
             });
+
+
+            function mainNextSlideFn(){
+                $(".slide").css({ zIndex:1 }).stop().animate({ opacity:1 },0); //3장의 슬라이드가 opacity 1로 겹쳐져서 준비되어있음
+                $(".slide").eq( cnt ).css({ zIndex:3 }).stop().animate({ opacity:0 },1000); //가장 먼저 1번 슬라이드가 zIndex 3번으로 제일 먼저 보이고, opacity가 0으로 변하면서 2번 슬라이드가 보임
+                 console.log(cnt);
+                $(".slide").eq( cnt==2? 0:cnt+1 ).css({ zIndex:2 }).stop().animate({ opacity:1 },0); //1번 슬라이드가 opacity 0이 되어갈 때 2번 슬라이드는 opacity 1이기 때문에 점점 보여짐
+                // cnt가 마지막이면(슬라이드2번), 첫번째 슬라이드로 변경
+                 console.log( cnt+1 ); //-> 연산이 앞에서 안 먹어서 뒤에서 계산하게끔 조건문을 바꿔줌
+                // cnt = (앞) 1 : 2 (뒤)
+                // cnt = (앞) 2 : 0 (뒤)
+                // cnt = (앞) 0 : 1 (뒤)
+                // cnt = (앞) 1 : 2 (뒤)
+            }
+            function mainPrevSlideFn(){
+                $(".slide").css({ zIndex:1 }).stop().animate({ opacity:1 },0); //3장의 슬라이드가 opacity 1로 겹쳐져서 준비되어있음
+                $(".slide").eq( cnt ).css({ zIndex:2 }).stop().animate({ opacity:1 },0); //1번 슬라이드가 opacity 0이 되어갈 때 2번 슬라이드는 opacity 1이기 때문에 점점 보여짐
+                console.log( cnt==-1? 0:cnt );
+                // cnt가 마지막이면(슬라이드2번), 첫번째 슬라이드로 변경
+                $(".slide").eq( cnt-1 ).css({ zIndex:3 }).stop().animate({ opacity:0 },1000); //가장 먼저 1번 슬라이드가 zIndex 3번으로 제일 먼저 보이고, opacity가 0으로 변하면서 2번 슬라이드가 보임
+                 console.log(cnt);
+                // cnt = (앞) 0 : 2 (뒤)
+                // cnt = (앞) 2 : 1 (뒤)
+                // cnt = (앞) 1 : 0 (뒤)
+                // cnt = (앞) 2 : 1 (뒤)
+            }
+            function countNextFn(){
+                cnt++;
+                if(cnt>2){cnt=0};
+                mainNextSlideFn();
+            }
+            function countPrevFn(){
+                cnt--;
+                if(cnt<0){cnt=2};
+                mainPrevSlideFn();
+            }
+            setInterval(countPrevFn, 3000)
         },
+        // .slide-wrap .slide {z-index:1;position:absolute;top:0;left:0;width:100%;height:100%;}
+        // .slide-wrap .slide0 {z-index:3;opacity:0;} 눈에 보이는 슬라이드 z-index:3;
+        // .slide-wrap .slide1 {z-index:2;}
+        
+        // [ 페이드 인/아웃 슬라이드 ]
+        //1. 메인 슬라이드 함수 : function mainSlideFn(){}
+        //2. 카운트 해주는 함수 : function countNextFn(){}
+        //                      function countPrevFn(){}
+
         section234Fn:    function(){
          
             var rl = (windowWidth-boxWidth)/2;
