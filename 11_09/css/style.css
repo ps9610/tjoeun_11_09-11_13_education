@@ -62,10 +62,10 @@
 #main .section234 .wrap {width:100%;max-width:1170px;margin:0 auto;height:100%;}
 #main .section234 .wrap .gap {margin:0 15px;height:100%;}
 #main .section234 .wrap .gap .container {position:relative;width:100%;}
-#main .section234 .wrap .gap .container .content-wrap {position:absolute;top:209.5px;right:0;/* right:345px */;width:100%;max-width:450px;height:550px;background:#fff;}
-#main .section234 .wrap .gap .container .content-wrap:after {position:absolute;top:5.090909%;left:6.222222%;content:"";display:block;width:87.555556%;height:89.818182%;outline:8px solid #d8b75f;} /* outline은 바깥쪽에서 그려진다는걸 생각하기 */
+#main .section234 .wrap .gap .container .content-wrap {z-index:1;position:absolute;top:209.5px;right:0;/* right:345px */;width:100%;max-width:450px;height:550px;background:#fff;}
+#main .section234 .wrap .gap .container .content-wrap:after {z-index:2;position:absolute;top:5.090909%;left:6.222222%;content:"";display:block;width:87.555556%;height:89.818182%;outline:8px solid #d8b75f;} /* outline은 바깥쪽에서 그려진다는걸 생각하기, 익스플로러에서 바깥으로 안 나가게 하려고, 만약에 border해서 offset으로 설정하면 하위버전 호환 안됨 */
 /* 텍스트 박스 - 반응형은 너비기준으로 계산할지 높이기준으로 계산할지가 제일 중요 */
-#main .section234 .wrap .gap .container .content-wrap .text-gap {margin:/* 80px */17.777778%;}
+#main .section234 .wrap .gap .container .content-wrap .text-gap {z-index:3;/* 링크걸려있어서 안정적으로 써주기 */position:relative;margin:/* 80px */17.777778%;}
 #main .section234 .wrap .gap .container .content-wrap .text-gap .text-wrap {text-align:center;}
 #main .section234 .wrap .gap .container .content-wrap .text-gap .text-wrap > h2 {width:100%;padding-bottom:/* 15px */5.172414%;}/* 패딩값 넓이 기준이라 백분율 맞춰놓기 -> 80픽셀 margin을 뺀 290px 너비가 기준 = 여기서부턴 콘텐츠 내용이니까*/
 #main .section234 .wrap .gap .container .content-wrap .text-gap .text-wrap > h2 > img {width:/* 45px */15.517241%;}

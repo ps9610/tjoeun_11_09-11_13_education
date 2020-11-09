@@ -107,20 +107,35 @@
             var boxWidth = $(".content-wrap").width(); //450
             var boxHeight = boxWidth * 1.22222;
             //            = $(".content-wrap").height(); //550
+            
+            // 폰트사이즈 =  폰트를 감싸고 있는 텍스트 박스 넓이 * 폰트크기비율
+            // h3 {font-size:28px;} 0.096551724[폰트크기비율(rateH3)]
+            // h4 {font-size:11px;} 0.037931034[폰트크기비율(rateH3)]
+            // p  {font-size:14px;} 0.048275862[폰트크기비율(rateP)]
 
-//박스 넓이가 바뀌면 height도 바뀌여야 함 이거 할거임
-//박스 높이(고정되어있음) = 박스 너비 (450)* 높이의 비율 = 1.22222
-// boxHeight = boxWidth * 1.22222
-// boxWidth는 boxHeight 위 쪽으로 변수 써주기
+            var textBox = $(".text-wrap").width();
 
-//창 너비가 1170이하면 [조건문] 박스를 가운데 정렬하는 애니메이션 만들기
-// right(또는 left) = (창너비-박스너비)/2
-// 창 너비 변수 생성하기
-// 그리고 right(또는 left) 변수 생성하기
+            var rateH3 = 0.096551724;
+            var rateH4 = 0.037931034;
+            var rateP = 0.048275862;
+
+            var fontSizeH3 = textBox * rateH3;
+            var fontSizeH4 = textBox * rateH4;
+            var fontSizeP = textBox * rateP;
+
+
             setTimeout(resizeFn,100);
 
             function resizeFn(){
                 
+                textBox = $(".text-wrap").width();
+                rateH3 = 0.096551724;
+                rateH4 = 0.037931034;
+                rateP = 0.048275862;
+                fontSizeH3 = textBox * rateH3;
+                fontSizeH4 = textBox * rateH4;
+                fontSizeP = textBox * rateP;
+
                 rl = (windowWidth-boxWidth)/2;
                 windowWidth = $(window).width(); //1170
                 windowHeight = $(window).height(); //969
@@ -137,7 +152,7 @@
                     section234Height = windowHeight;
                     boxTop = (windowHeight-boxHeight)/2;
                 }
-            console.log( boxHeight );
+                
             $(".content-wrap").css({ top:boxTop, height:boxHeight });
             $(".section234").css({ height:section234Height });
             
@@ -151,6 +166,10 @@
                     $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:0 },100);
                     $("#section03 .content-wrap").stop().animate({ left:0 },100);
                 }
+
+                $(".text-wrap h3").css({ fontSize : fontSizeH3 })
+                $(".text-wrap h4").css({ fontSize : fontSizeH4 })
+                $(".text-wrap p").css({ fontSize : fontSizeP })
             };
 
             $(window).resize(function(){

@@ -107,16 +107,28 @@
             var boxWidth = $(".content-wrap").width(); //450
             var boxHeight = boxWidth * 1.22222;
             //            = $(".content-wrap").height(); //550
+            var fontSizeH3 = rateH3 * textW;   //비율(rateH3)  * 텍스트박스 내부 넓이(textW)
+            var rateH3 = 0.096551724
+            var textW = $(".text-wrap").width();
+            var fontSizeH4 = rateH4 * textW;    //비율(rateH4)  * 텍스트박스 내부 넓이(textW)
+            var rateH4 = 0.037931034
+            var fontSizeP = rateP * textW;      //비율(rateP)  * 텍스트박스 내부 넓이(textW)
+            var rateP = 0.048275862 
 
             setTimeout(resizeFn,100);
 
             function resizeFn(){
                 
                 rl = (windowWidth-boxWidth)/2;
+                //창너비에 따라서 left, right 위치 가운데 정렬 계산
                 windowWidth = $(window).width(); //1170
+                //창높이 기준으로 섹션높이 변경
                 windowHeight = $(window).height(); //969
+                //창너비가 섹션높이
                 section234Height = windowHeight;
+                //박스너비에 따라서 비율로 높이 변경
                 boxWidth = $(".content-wrap").width(); //450
+                //박스높이
                 boxHeight = boxWidth * 1.22222;
                 // boxTop = (windowHeight-boxHeight)/2; //(969-550)/2 = 209.5
 
@@ -128,9 +140,20 @@
                     section234Height = windowHeight;
                     boxTop = (windowHeight-boxHeight)/2;
                 }
-            console.log( boxHeight );
-            $(".content-wrap").css({ top:boxTop, height:boxHeight });
-            $(".section234").css({ height:section234Height });
+                //폰트 사이즈 반응형
+                textW = $(".text-wrap").width();
+                fontSizeH3 = rateH3 * textW;
+                fontSizeH4 = rateH4 * textW;  
+                fontSizeP = rateP * textW;    
+
+                $('.text-wrap h3').css({ fontSize:fontSizeH3 });
+                $('.text-wrap h4').css({ fontSize:fontSizeH4 });
+                $('.text-wrap p').css({ fontSize:fontSizeP });
+
+                
+            //console.log( boxHeight );
+            $(".content-wrap").css({ top:boxTop, height:boxHeight }); //박스 탑, 박스 높이
+            $(".section234").css({ height:section234Height }); //섹션 높이
             
                 if( windowWidth <= 1170 ){
                     $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:rl-15 },300);
