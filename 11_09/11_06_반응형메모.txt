@@ -1,0 +1,35 @@
+//어제 했던 박스블럭+비율 다시함\
+1. 화면 줄이면 섹션 2 3 4 노란테두리 얇아지게 (최소 320px->핸드폰 젤 작은게 320px임)
+    ㄴ> js에서도 섹션 2 3 4 통합해서 할 수 있음
+2.  창 높이가 박스 높이보다 더 크면 창 높이는 원래대로 하고,
+    창 높이가 박스 높이보다 더 작으면 창 높이를 박스 높이에 맞춰라
+3.     
+
+<section id="section02" class="section234"> : 여기다가 1170px으로 너비를 맞추고
+    <div class="wrap"> : 이쪽에 마진,패딩 넣으면 넓이가 전체적으로 늘어남, box-sizing은 하위 버전이 안되니까 쓰지 않는 것을 권장
+
+#main #section02 {width:100%;height:969px;background:url(../img/restaurant-img1.jpg) no-repeat 50% 0 fixed;background-size:cover;}
+/* position:fixed는 높이 없어서 자동으로 높이 안 잡히니까 잡아줘야됨 */
+/* // ✨ js에서 높이를 잡았는데 section2에 높이를 써 준 이유? 혹시 js에서 가동되지 않을때를 대비해서 적어준것, css는 항상 제이쿼리를 대응할 수 있게끔 시뮬레이션 했던 그대로 써놔야함 */
+#main #section02 .wrap {width:100%;max-width:1170px;margin:0 auto;height:100%;}
+/* 박스블럭은 부모영역'만'의 높이에 영향을 받는다. 그래서 여기에 100%를 쓴거임 */
+/* 제이쿼리에서도 할 수 있지만 css에서도 할 수있으니까 최소한 css에서 할 수 있는건 다 해놓고 제이쿼리 넘어가기 */
+/* max-width:1170px; -> 안내문이 화면 끝에 걸리지 않고 1170px 끝에 걸리게 하려고 */
+#main #section02 .wrap .gap {margin:0 15px;height:100%;}
+/* gap의 부모 wrap이 높이가 100%(969px)로 잡혀있음, gap도 박스블럭 맞음 */
+/*= height=100%로 자식 높이 잡아줄 수 있음 */
+#main #section02 .wrap .gap .container {position:relative;width:100%;}/* = width:1140px; */
+#main #section02 .wrap .gap .container .content-wrap {position:absolute;/* top:21.62023%; */top:209.5px;right:0;width:100%;max-width:450px;height:550px;background:#fff;}
+/*.content-wrap {float:right을 하면 반응형일 때 margin:0 auto로 가운데 정렬은 할 수 있지만 */
+    /*ㄴ>애니메이션 효과는 못 줘서 안됨} */
+/* 박스 넓이 작아지면 높이도 같이 작아져야됨 -> px(고정값)이 아닌 max-width 사용하면 반응형 가능 */
+/* max-width : 최대로 커져봤자 450px = 450px이 100%  */
+
+
+
+
+1. 박스 탑 값을 정해서 탑 높이에 정중앙되게 하기
+2. 박스 넓이가 바뀌면서 높이도 자동화되게 하기  
+3. 섹션 전체 높이도 구해야 됨
+4. 너비 조건문 걸어서 가운데 정렬하기
+
