@@ -108,6 +108,15 @@
             var boxHeight = boxWidth * 1.22222;
             //            = $(".content-wrap").height(); //550
 
+//박스 넓이가 바뀌면 height도 바뀌여야 함 이거 할거임
+//박스 높이(고정되어있음) = 박스 너비 (450)* 높이의 비율 = 1.22222
+// boxHeight = boxWidth * 1.22222
+// boxWidth는 boxHeight 위 쪽으로 변수 써주기
+
+//창 너비가 1170이하면 [조건문] 박스를 가운데 정렬하는 애니메이션 만들기
+// right(또는 left) = (창너비-박스너비)/2
+// 창 너비 변수 생성하기
+// 그리고 right(또는 left) 변수 생성하기
             setTimeout(resizeFn,100);
 
             function resizeFn(){
@@ -122,7 +131,7 @@
 
                 if(windowHeight < boxHeight+60){
                     section234Height = boxHeight+60;
-                    boxTop = 30;
+                    boxTop = 0+30;
                 }
                 else{
                     section234Height = windowHeight;
@@ -134,19 +143,15 @@
             
                 if( windowWidth <= 1170 ){
                     $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:rl-15 },300);
-                    $("#section03 .content-wrap").stop().animate({ left:rl-15 },300); // left, right 각각 마진 안 맞아서 삭제->미디어 쿼리에서 조정할거임
+                    // $("#section02 .content-wrap, #section04 .content-wrap").css({ right:rl-15 }) : 애니메이션 하기 전
+                    // $("#section02 .content-wrap, #section04 .content-wrap").css({ right:rl-15 = 마진값 빼줘야 한쪽으로 안 치우치고 중앙에 옴});
+                    $("#section03 .content-wrap").stop().animate({ left:rl-15 },300);
                 }
                 else{
                     $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:0 },100);
                     $("#section03 .content-wrap").stop().animate({ left:0 },100);
                 }
             };
-            //font-size = 비율 * 텍스트박스 너비 (텍스트박스가 작아진 만큼 비율을 곱하면 됨)
-            // image, font-size는 전체박스의 비율이든 텍스트박스 너비 비율이든 상관없음
-            // 근데 패딩, 마진은 부모요소 반드시 고려
-            //.text-wrap > h3 {font-size:28px; 9.655172%  [0.096551724] = 변수 fontSizeH3 }
-            //.text-wrap > h4 {font-size:11px; 3.793103%  [0.037931034] = 변수 fontSizeH4 }
-            //.text-wrap > p  {font-size:14px; 4.827586%  [0.048275862] = 변수 fontSizeP }
 
             $(window).resize(function(){
                 resizeFn();
