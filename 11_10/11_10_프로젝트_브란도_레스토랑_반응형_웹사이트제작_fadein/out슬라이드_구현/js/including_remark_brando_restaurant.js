@@ -5,9 +5,13 @@
             var that=this;
                 that.headerFn();
                 that.section01Fn();
-                that.section02Fn();
-                that.section03Fn();
-                that.section04Fn();
+                that.section234Fn();
+                /* 
+                that.section234Fn(); 
+                 =  that.section02Fn();
+                    that.section03Fn();
+                    that.section04Fn();
+                */
                 that.section05Fn();
                 that.section06Fn();
                 that.section07Fn();
@@ -146,6 +150,9 @@
 
             //메인 NEXT 슬라이드
             function mainNextSlideFn(){
+            // .slide-wrap .slide {z-index:1;position:absolute;top:0;left:0;width:100%;height:100%;}
+            // .slide-wrap .slide1 /* cnt==0? 2:cnt-1 */ {z-index:2;} /* z-index 3 다음으로 보여져야 되는 슬라이드 z-index:2; */ */
+            // .slide-wrap .slide0 {z-index:3;}/* 눈에 보이는 슬라이드 z-index:3; */
                 $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
                 // 다음 슬라이드가 나타나게끔 원
                 $(".slide").eq(cnt==0? 2:cnt-1).css({ zIndex:2 });
@@ -185,7 +192,18 @@
                     }
                 }
             })
-        },
+
+            },
+            // .slide-wrap .slide {z-index:1;position:absolute;top:0;left:0;width:100%;height:100%;}
+            // .slide-wrap .slide0 {z-index:3;opacity:0;} 눈에 보이는 슬라이드 z-index:3;
+            // .slide-wrap .slide1 {z-index:2;}
+
+            // [ 페이드 인/아웃 슬라이드 ]
+            //1. 메인 슬라이드 함수 : function mainSlideFn(){}
+            //2. 카운트 해주는 함수 : function countNextFn(){}
+            //                      function countPrevFn(){}
+
+        
         /* section02Fn:    function(){
             //해당 섹션의 폰트사이즈 비율
             var txtBoxW = 0;
@@ -324,17 +342,30 @@ section234Fn:    function(){
 // 창 너비 변수 생성하기
 // 그리고 right(또는 left) 변수 생성하기
 
+    var fontSizeH3 = rateH3 * textW; //비율(rateH3)  * 텍스트박스 내부 넓이(textW)
+    var rateH3 = 0.096551724
+    var textW = $(".text-wrap").width();
+    var fontSizeH4 = rateH4 * textW; //비율(rateH4)  * 텍스트박스 내부 넓이(textW)
+    var rateH4 = 0.037931034
+    var fontSizeP = rateP * textW;   //비율(rateP)  * 텍스트박스 내부 넓이(textW)
+    var rateP = 0.048275862 
+
     setTimeout(resizeFn,100);
 
     function resizeFn(){
-        
+
         rl = (windowWidth-boxWidth)/2;
+        //창너비에 따라서 left, right 위치 가운데 정렬 계산
         windowWidth = $(window).width(); //1170
+        //창높이 기준으로 섹션높이 변경
         windowHeight = $(window).height(); //969
+        //창너비가 섹션높이
         section234Height = windowHeight;
+        //박스너비에 따라서 비율로 높이 변경
         boxWidth = $(".content-wrap").width(); //450
+        //박스높이
         boxHeight = boxWidth * 1.22222;
-        boxTop = (windowHeight-boxHeight)/2; //(969-550)/2 = 209.5
+        // boxTop = (windowHeight-boxHeight)/2; //(969-550)/2 = 209.5
 
         //조건같이 계산 해야 되는 것들 따로
         if(windowHeight < boxHeight){
@@ -346,21 +377,43 @@ section234Fn:    function(){
             boxTop = (windowHeight-boxHeight)/2;
         };
 
+        //폰트 사이즈 반응형
+        textW = $(".text-wrap").width();
+        fontSizeH3 = rateH3 * textW;
+        fontSizeH4 = rateH4 * textW;  
+        fontSizeP = rateP * textW;    
+
+        $('.text-wrap h3').css({ fontSize:fontSizeH3 });
+        $('.text-wrap h4').css({ fontSize:fontSizeH4 });
+        $('.text-wrap p').css({ fontSize:fontSizeP });
+
+
         if( windowWidth <= 1170 ){ // boxWidth의 부모 넓이가 1170px이기 때문에 기준을 1170으로 잡음
             $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:rl-15 },300);
             // $("#section02 .content-wrap, #section04 .content-wrap").css({ right:rl-15 }) : 애니메이션 하기 전
             // $("#section02 .content-wrap, #section04 .content-wrap").css({ right:rl-15 = 마진값 빼줘야 한쪽으로 안 치우치고 중앙에 옴});
+            // left, right 각각 마진 미디어 쿼리에서 조정했으면 여기서 삭제, 아니면 여기서 조정하기
             $("#section03 .content-wrap").stop().animate({ left:rl-15 },300);
         }
         else{
+            
             $("#section02 .content-wrap, #section04 .content-wrap").stop().animate({ right:0 },100);
             $("#section03 .content-wrap").stop().animate({ left:0 },100);
         };
+        
+        //font-size = 비율 * 텍스트박스 너비 (텍스트박스가 작아진 만큼 비율을 곱하면 됨)
+        // image, font-size는 전체박스의 비율이든 텍스트박스 너비 비율이든 상관없음
+        // 근데 패딩, 마진은 부모요소 반드시 고려
+        //.text-wrap > h3 {font-size:28px; 9.655172%  [0.096551724] = 변수 fontSizeH3 }
+        //.text-wrap > h4 {font-size:11px; 3.793103%  [0.037931034] = 변수 fontSizeH4 }
+        //.text-wrap > p  {font-size:14px; 4.827586%  [0.048275862] = 변수 fontSizeP }
+
+        //DOM 구조 따로 정리하기                        
+        //console.log( boxHeight );
+        $(".content-wrap").css({ top:boxTop, height:boxHeight }); //박스 탑, 박스 높이
+        $(".section234").css({ height:section234Height }); //섹션 높이
     };
 
-    //DOM 구조 따로 정리하기
-    $(".content-wrap").css({ top:boxTop, height:boxHeight });
-    $(".section234").css({height:section234Height});
     $(window).resize(function(){
         resizeFn();
     })

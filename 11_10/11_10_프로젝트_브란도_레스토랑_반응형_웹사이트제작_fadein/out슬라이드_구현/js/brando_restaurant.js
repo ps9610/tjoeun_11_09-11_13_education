@@ -101,51 +101,42 @@
                 resizeFn();
             });
 
-            setInterval(nextCountFn,3000);
-
-            //메인 PREV 슬라이드
-            function mainPrevSlideFn(){
-                $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
-                $(".slide").eq(cnt).css({ zIndex:2 });
-                $(".slide").eq(cnt==n? 0:cnt+1).css({ zIndex:3 }).stop().animate({opacity:1},0).animate({opacity:0},800);
-                //console.log(cnt);
-                }
-
-            //메인 NEXT 슬라이드
             function mainNextSlideFn(){
-                $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
-                $(".slide").eq(cnt==0? n:cnt-1).css({ zIndex:2 });
-                $(".slide").eq(cnt).css({ zIndex:3 }).stop().animate({opacity:0},0).animate({opacity:1},800);
-                //console.log(cnt);
-                }
-
-            //PREV 슬라이드
-            function prevCountFn(){
-                cnt--;
-                if(cnt<0){cnt=n};
-                mainPrevSlideFn();
+                // 다음 슬라이드가 현재 슬라이드를 덮는다
+                // 덮으려면 opacity가 없던 상태에서 1인 상태가 되어야 함 = cnt
+                $(".slide").css({zIndex:1}).stop().animate({opacity:1},0);
+                $(".slide").eq(cnt).css({zIndex:2})
+                $(".slide").eq(cnt==4? 0:cnt+1).css({zIndex:3}).stop().animate({opacity:0},0).animate({opacity:1},600);
+                // z-index:3에 있는 게 현재 슬라이드
+                // 다음 슬라이드는 보이지 않는 opacity=0인 상태이지만, 현재 슬라이드 뒤에 존재함
+                // 현재 슬라이드에서 opacity 1로
             }
+            // 0
+            // 4
+            // 3
+            // 2
+            // 1
 
-            //NEXT 슬라이드
-            function nextCountFn(){
+            function mainPrevSlideFn(){
+
+            }
+            function nextSlideFn(){
                 cnt++;
-                if(cnt>n){cnt=0};
+                if(cnt>4){cnt=0};
                 mainNextSlideFn();
             }
-
+            function prevSlideFn(){
+                cnt--;
+                mainPrevSlideFn();
+            }
             $("#section01").swipe({
                 swipeLeft : function(){
-                    if( !$(".slide").is(":animated") ){
-                        nextCountFn();
-                    }
+                    nextSlideFn();
                 },
                 swipeRight : function(){
-                    if( !$(".slide").is(":animated") ){
-                        prevCountFn();
-                    }
+                    prevSlideFn();
                 }
             })
-
         },
 
         section234Fn:    function(){
@@ -232,24 +223,6 @@
             
         },
         section09Fn:    function(){
-            
-            //  모달창 띄우기
-            $(".gallery-img-btn").on({
-                click : function(e){
-                    e.preventDefault();
-                    $(".modal").stop().fadeIn(300);
-                    $("html").addClass("addScroll");
-                }
-            });
-
-            //모달창 닫기
-            $(".close-btn, .img-wrap").on({
-                click : function(e){
-                    e.preventDefault();
-                    $(".modal").stop().fadeOut(300);
-                    $("html").removeClass("addScroll");
-                }
-            })
             
         },
         section10Fn:    function(){

@@ -2,8 +2,7 @@
 
 * {margin:0;padding:0;vertical-align:middle;border:0;}
 html, body {width:100%; height:100%;color:#626262;background:#dcdcdc url(../img/restaurant-img7.jpg);}
-html {overflow-y:scroll;} /* root에만 만듦 */
-html.addScroll {overflow:hidden;} /* 모달창에서는 스크롤 없이 설정하려고 */
+html {overflow-y:scroll;}
 body {font:normal 14px/1 "Roboto","Montserrat","Nanum Gothic","Noto Sans KR";color:#444;background:#fff;}
                          /*  1차글꼴   ,    2차글꼴  */
 header, main, footer, section, aside, nav, aside {display: block;}
