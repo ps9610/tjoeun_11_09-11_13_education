@@ -150,9 +150,6 @@
 
             //메인 NEXT 슬라이드
             function mainNextSlideFn(){
-            // .slide-wrap .slide {z-index:1;position:absolute;top:0;left:0;width:100%;height:100%;}
-            // .slide-wrap .slide1 /* cnt==0? 2:cnt-1 */ {z-index:2;} /* z-index 3 다음으로 보여져야 되는 슬라이드 z-index:2; */ */
-            // .slide-wrap .slide0 {z-index:3;}/* 눈에 보이는 슬라이드 z-index:3; */
                 $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
                 // 다음 슬라이드가 나타나게끔 원
                 $(".slide").eq(cnt==0? 2:cnt-1).css({ zIndex:2 });

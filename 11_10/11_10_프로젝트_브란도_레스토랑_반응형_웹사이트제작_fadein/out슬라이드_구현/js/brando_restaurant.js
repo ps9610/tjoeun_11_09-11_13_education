@@ -102,11 +102,11 @@
             });
 
             function mainNextSlideFn(){
-                // 다음 슬라이드가 현재 슬라이드를 덮는다
-                // 덮으려면 opacity가 없던 상태에서 1인 상태가 되어야 함 = cnt
+                // 현재 슬라이드 위에 다음 슬라이드가 올라옴
+                // 덮으려면 opacity가 없던 상태에서 1인 상태가 되어야 함 [움직이는 대상] = cnt
                 $(".slide").css({zIndex:1}).stop().animate({opacity:1},0);
                 $(".slide").eq(cnt).css({zIndex:2})
-                $(".slide").eq(cnt==4? 0:cnt+1).css({zIndex:3}).stop().animate({opacity:0},0).animate({opacity:1},600);
+                $(".slide").eq(cnt).css({zIndex:3}).stop().animate({opacity:0},0).animate({opacity:1},600);
                 // z-index:3에 있는 게 현재 슬라이드
                 // 다음 슬라이드는 보이지 않는 opacity=0인 상태이지만, 현재 슬라이드 뒤에 존재함
                 // 현재 슬라이드에서 opacity 1로
