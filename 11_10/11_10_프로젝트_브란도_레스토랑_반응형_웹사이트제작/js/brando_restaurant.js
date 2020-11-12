@@ -102,21 +102,21 @@
             });
 
             setInterval(nextCountFn,3000);
+            
+            //메인 NEXT 슬라이드
+            function mainNextSlideFn(){
+                $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
+                $(".slide").eq(cnt==0? n:cnt-1).css({ zIndex:2 });
+                $(".slide").eq(cnt).css({ zIndex:3 }).stop().animate({opacity:0},0).animate({opacity:1},800);
+                console.log("next",cnt);
+                }
 
             //메인 PREV 슬라이드
             function mainPrevSlideFn(){
                 $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
                 $(".slide").eq(cnt).css({ zIndex:2 });
                 $(".slide").eq(cnt==n? 0:cnt+1).css({ zIndex:3 }).stop().animate({opacity:1},0).animate({opacity:0},800);
-                //console.log(cnt);
-                }
-
-            //메인 NEXT 슬라이드
-            function mainNextSlideFn(){
-                $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
-                $(".slide").eq(cnt==0? n:cnt-1).css({ zIndex:2 });
-                $(".slide").eq(cnt).css({ zIndex:3 }).stop().animate({opacity:0},0).animate({opacity:1},800);
-                //console.log(cnt);
+                console.log("prev",cnt);
                 }
 
             //PREV 슬라이드
