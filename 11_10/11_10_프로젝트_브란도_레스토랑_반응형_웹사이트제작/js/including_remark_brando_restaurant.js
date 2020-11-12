@@ -131,6 +131,19 @@
 
             setInterval(nextCountFn,100);
 
+            //메인 NEXT 슬라이드
+            function mainNextSlideFn(){
+                $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
+                // 다음 슬라이드가 나타나게끔 원
+                $(".slide").eq(cnt==0? 2:cnt-1).css({ zIndex:2 });
+                //현재 슬라이드
+                //핵심 포인트 : 현재 슬라이드 위에 다음 슬라이드가 나타남
+                // (=다음 슬라이드가 현재 슬라이드를 덮는다)
+                $(".slide").eq(cnt).css({ zIndex:3 }).stop().animate({opacity:0},0).animate({opacity:1},800); //화면에 나타나는 것
+                //보이지 않는 상태에서 1초만에 보이게 하라(페이드인효과) 
+                console.log(cnt);
+            }
+            
             //메인 PREV 슬라이드
             function mainPrevSlideFn(){
                 $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
@@ -143,20 +156,7 @@
                                                                     //보여진 상태에서 1초만에 보이지 않게 하라(페이드아웃효과) 
                 console.log(cnt);
                 }
-
-            //메인 NEXT 슬라이드
-            function mainNextSlideFn(){
-                $(".slide").css({ zIndex:1 }).stop().animate({opacity:1},0);
-                // 다음 슬라이드가 나타나게끔 원
-                $(".slide").eq(cnt==0? 2:cnt-1).css({ zIndex:2 });
-                //현재 슬라이드
-                //핵심 포인트 : 현재 슬라이드 위에 다음 슬라이드가 나타남
-                // (=다음 슬라이드가 현재 슬라이드를 덮는다)
-                $(".slide").eq(cnt).css({ zIndex:3 }).stop().animate({opacity:0},0).animate({opacity:1},800); //화면에 나타나는 것
-                                                                            //보이지 않는 상태에서 1초만에 보이게 하라(페이드인효과) 
-                console.log(cnt);
-                }
-
+            
             //PREV 슬라이드
             function prevCountFn(){
                 cnt--;
