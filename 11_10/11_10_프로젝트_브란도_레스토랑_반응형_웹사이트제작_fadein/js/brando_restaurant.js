@@ -102,39 +102,36 @@
             });
 
             function mainNextSlideFn(){
-                // 현재 슬라이드 위에 다음 슬라이드가 올라옴
-                // 덮으려면 opacity가 없던 상태에서 1인 상태가 되어야 함 [움직이는 대상] = cnt
+                $(".slide").css({zIndex:1}).stop().animate({opacity:1},0);
+                $(".slide").eq(cnt==0?n:cnt-1).css({zIndex:2})
+                $(".slide").eq(cnt).css({zIndex:3}).stop().animate({opacity:0},0).animate({opacity:1},600);
+            }
+            function mainPrevSlideFn(){
                 $(".slide").css({zIndex:1}).stop().animate({opacity:1},0);
                 $(".slide").eq(cnt).css({zIndex:2})
-                $(".slide").eq(cnt).css({zIndex:3}).stop().animate({opacity:0},0).animate({opacity:1},600);
-                // z-index:3에 있는 게 현재 슬라이드
-                // 다음 슬라이드는 보이지 않는 opacity=0인 상태이지만, 현재 슬라이드 뒤에 존재함
-                // 현재 슬라이드에서 opacity 1로
+                $(".slide").eq(cnt==n?0:cnt+1).css({zIndex:3}).stop().animate({opacity:1},0).animate({opacity:0},600);
             }
-            // 0
-            // 4
-            // 3
-            // 2
-            // 1
 
-            function mainPrevSlideFn(){
-
-            }
             function nextSlideFn(){
                 cnt++;
-                if(cnt>4){cnt=0};
+                if(cnt>n){cnt=0};
                 mainNextSlideFn();
             }
             function prevSlideFn(){
                 cnt--;
+                if(cnt<0){cnt=n};
                 mainPrevSlideFn();
             }
             $("#section01").swipe({
                 swipeLeft : function(){
-                    nextSlideFn();
+                    if(!$(".slide").is(":animated")){
+                        nextSlideFn();
+                    }
                 },
                 swipeRight : function(){
-                    prevSlideFn();
+                    if(!$(".slide").is(":animated")){
+                        prevSlideFn();
+                    }
                 }
             })
         },

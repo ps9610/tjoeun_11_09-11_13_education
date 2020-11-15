@@ -183,7 +183,7 @@
 										<code>"horizontal"</code> : will force page to scroll on horizontal swipes. <br/>
 										<code>"vertical"</code> : will force page to scroll on vertical swipes. <br/>
 	* @property {boolean} [fallbackToMouseEvents=true] If true mouse events are used when run on a non touch device, false will stop swipes being triggered by mouse events on non tocuh devices.
-	* @property {string} [excludedElements="button, input, select, textarea, .noSwipe"] A jquery selector that specifies child elements that do NOT trigger swipes. By default this excludes all form, input, select, button, anchor and .noSwipe elements.
+	* @property {string} [excludedElements="button, input, select, textarea, .noSwipe"] A jquery selector that specifies child elements that do NOT trigger swipes. By default this excludes all form, input, select, button and .noSwipe elements.
 
 	*/
 	var defaults = {
